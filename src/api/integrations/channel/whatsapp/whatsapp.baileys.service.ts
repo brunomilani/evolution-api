@@ -1938,7 +1938,7 @@ export class BaileysStartupService extends ChannelStartupService {
       return await this.client.sendMessage(
         sender,
         { text: message['conversation'], mentions, linkPreview: linkPreview } as unknown as AnyMessageContent,
-        option as unknown as MiscMessageGenerationOptions,
+        { ...option, linkPreview: true } as unknown as MiscMessageGenerationOptions,
       );
     }
 
@@ -2069,7 +2069,7 @@ export class BaileysStartupService extends ChannelStartupService {
         }
       }
 
-      const linkPreview = options?.linkPreview != false ? undefined : false;
+      const linkPreview = options?.linkPreview ?? false;
 
       let quoted: WAMessage;
 
